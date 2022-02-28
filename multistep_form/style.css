@@ -1,0 +1,124 @@
+.body{
+background-color: #1e283b;
+}
+.card {
+    background-color: #18233a;
+    border: 1px solid rgb(100, 96, 96);
+    border-radius: 6px;
+    padding: 7px;
+    max-width: 350px;
+   
+    margin: 0 auto;
+    animation: fade 150ms ease-in-out forwards;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap:25px; 
+  }
+  
+  .form-group:last-child {
+    margin: 0;
+  }
+  
+  
+  .form-group > label {
+    font-weight: bolder;
+    font-size: 17px;
+    color: white;
+
+  }
+  
+  .form-group > input {
+    border: 1px solid #333;
+    border-radius: .25em;
+    font-size: 1rem;
+    padding: 10px;
+    background-color: rgba(10, 42, 83, 0.65);
+    color: white;
+  }
+  
+  .step-title {
+    margin: 0;
+    margin-bottom: 5px;
+    text-align: center;
+   color:  #d4dbe9;
+  }
+  .next{
+    width: 100px;
+    height: 35px;
+    background-color: #0f2557;
+    border-radius: 5px;
+    color: white;
+    font-size: large;
+    border:1px solid #d4dbe9;
+    margin-top: 10px;
+}
+.next:hover{
+    background-color: #41547c;
+}
+
+.preview{
+    width: 100px;
+    height: 35px;
+    background-color: rgb(4, 90, 187);
+    border-radius: 5px;
+    color: white;
+    font-size: large;
+    border:1px solid #d4dbe9;
+}
+.preview:hover{
+    background-color: rgb(1, 73, 155);
+}
+.submit{
+    width: 100px;
+    height: 35px;
+    background-color: rgb(146, 4, 51);
+    border-radius: 5px;
+    color: white;
+    font-size: large;
+    border: 1px solid #d4dbe9;
+}
+ .submit:hover{
+    background-color:rgb(63, 6, 25);
+ }
+  .card.active {
+    animation: slide 250ms 125ms ease-in-out both;
+  }
+  
+  .multi-step-form {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translateX(200%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(.75);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
