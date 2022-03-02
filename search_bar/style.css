@@ -1,0 +1,46 @@
+.search-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    font-size: 1rem;
+    width: 50%;
+    height: 30px;
+    background-color: rgb(59, 56, 56);
+    color: antiquewhite;
+    border: 1px solid rgb(248, 248, 248);
+   
+
+}
+
+.user-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    gap: .25rem;
+    margin-top: 1rem;
+}
+
+.card{
+    border: 1px solid orangered;
+    background-color: orange;
+    padding: .5rem;
+}
+
+.card > .header{
+    margin-bottom: .25rem;
+    color:rgb(11, 66, 66);
+    font-size: large;
+}
+.card > .body{
+    font-size: 1rem;
+    color: white;
+
+}
+
+.hide{
+    display: none;
+}
