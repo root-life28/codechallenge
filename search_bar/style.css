@@ -25,14 +25,14 @@ input{
 }
 
 .card{
-    border: 1px solid orangered;
-    background-color: orange;
+    border: 1px solid rgb(245, 226, 219);
+    background-color: #02060a;
     padding: .5rem;
 }
 
 .card > .header{
     margin-bottom: .25rem;
-    color:rgb(11, 66, 66);
+    color:rgb(210, 235, 235);
     font-size: large;
 }
 .card > .body{

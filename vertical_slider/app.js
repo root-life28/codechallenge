@@ -4,7 +4,7 @@ const slideLeft = document.querySelector('.left-slide')
 const upButton = document.querySelector('.up-button')
 const downButton = document.querySelector('.down-button')
 const slidesLength = slideRight.querySelectorAll('div').length
-
+ 
 let activeSliderIndex=0;
 slideLeft.style.top=`-${(slidesLength - 1)*100}vh`
 let activeSlideIndex = 0
