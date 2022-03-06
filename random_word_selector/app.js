@@ -16,7 +16,7 @@ textarea.addEventListener('keyup', (e) => {
 })
 
 function createTags(input) {
-    const tags = input.split(',').filter(tag => tag.trim() !== '').map(tag => tag.trim())
+    const tags = input.split(' ').filter(tag => tag.trim() !== '').map(tag => tag.trim())
     
     tagsEl.innerHTML = ''
 
@@ -42,18 +42,22 @@ function randomSelect() {
         }, 100)
 	}
     }, 100);
-
+    var randomTag;
     setTimeout(() => {
         clearInterval(interval)
 
         setTimeout(() => {
-            const randomTag = pickRandomTag()
+             randomTag = pickRandomTag()
 
             highlightTag(randomTag)
-            window.alert("randomTag")
+            // window.alert("'"+randomTag.textContent+"'"+" is Random Pick")
+           
         }, 100)
+        
 
     }, times * 100)
+
+   
 }
 
 function pickRandomTag() {
