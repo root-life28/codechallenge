@@ -68,6 +68,17 @@ section{
     background: #2969e9;
     
 }
+.home:before{
+    z-index: 777;
+    content: '';
+    position: absolute;
+    background: rgba(3, 96, 251, 0.3);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+}
 .home .content{
     z-index: 888;
     color: wheat;
@@ -132,6 +143,62 @@ section{
    visibility: hidden;
 }
 
+.home video{
+    z-index: 000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-navigation{
+    z-index: 888;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(80px);
+    margin-bottom: 12px;
+}
+.slide-navigation .nav-btn{
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease;
+}
+
+.slide-navigation .nav-btn:not(:last-child)
+{
+    margin-right: 20px;
+}
+
+.slide-navigation .nav-btn:hover{
+    transform: scale(1.5);
+}
+
+.slide-navigation .nav-btn.active{
+    background: #2696e9;
+}
+
+.video-slide{
+    visibility: hidden
+}
+.video-slide.active{
+    visibility: visible;
+}
+.content{
+    display: none;
+}
+
+.content.active{
+   display: inline;
+}
+
 @media (max-width:1040px){
     header{
         padding: 12px 20px;
@@ -145,10 +212,45 @@ section{
         right: 15px;
     }
 
-    header .navigation{
+    header .navigation {
        
-        display: none;
+       display: none;
     }
+    header .navigation.active{
+        position: fixed;
+        z-index: -1;
+        width: 100%;
+        height: 100vh;
+        top:0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(1, 1, 1, 0.5);
+        visibility: visible;
+    }
+    header .navigation.active .navigation-items a{
+        color: #222;
+        font-size: 1.2em;
+        margin: 20px;
+    }
+    header .navigation.active .navigation-items a::before{
+        background: #222;
+        height: 5px;
+    }
+    header .navigation.active .navigation-items{
+        background: #fff;
+        max-width:600px;
+        margin: 20px;
+        padding:40px ;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        box-shadow: 0 5px 25px rgb(1 1 1/20%);
+
+    }
+
     .menu-btn i{
         font-size: 24px;
         color: #fff;
@@ -156,5 +258,8 @@ section{
         transition: 0.3s ease;
         visibility: visible;
     }
+    
+  
+   
 }
 
