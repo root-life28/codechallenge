@@ -26,7 +26,7 @@ body{
 .box::before{
     content: '';
     z-index: -3;
-    background-image: conic-gradient(#ff0052 28deg,transparent 128deg);
+    background-image: conic-gradient(#4adb05 28deg,transparent 128deg);
     width: 150%;
     height: 150%;
     position: absolute;
@@ -43,7 +43,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ff0052;
+    
     font-size: larger;
     letter-spacing: 5px;
     box-shadow: inset 20px 20px 20px #0000008c ;
@@ -66,20 +66,16 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgba(47, 121, 255, 0.2);
+  background: rgb(85 94 110 / 20%);;
     border-radius: 15px;
   
     
 }
 
-
-.content::before{
-    width: 300px;
-    height: 300px;
-}
-
 .content h1{
+    
     color: bisque;
+    margin-bottom: 10px;
     
 }
 .content p{
@@ -87,6 +83,8 @@ body{
     height: 300px;
     width: 550px;
     padding: 2px;
+    color: white;
+    margin: 5px;
 
  
 }
@@ -96,6 +94,8 @@ body{
     height: 200px;
     border-radius: 50%;
    object-fit: cover;
+   margin-top: 5px;
+  padding-bottom: 5px;
     
 }
 
