@@ -9,15 +9,38 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: rgb(30 43 46);
 }
 
 .container{
-    background: rgb(153, 153, 116);
+    background: rgb(27 104 129);
     width: 600px;
     height: 600px;
     display: flex;
     justify-content: center;
-    align-items: center;
-   
-   
+    align-items:center;
+
+    border-radius: 10px;
+    
+}
+
+button{
+   margin-top: 25px;
+    width: 120px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 42px;
+    color: #00f863;
+    background: black;
+    border-radius: 5px;
+}
+
+button:hover{
+    background: rgb(30, 43, 46);
+}
+
+.content h1{
+    margin-bottom: 10px;
+    color: rgb(231, 253, 253);
+    font-size: 50px;
 }

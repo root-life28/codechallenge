@@ -9,10 +9,21 @@ const userChoseBtn=document.querySelectorAll('button');
 
 userChoseBtn.forEach(useChose=>useChose.addEventListener('click',(e)=>{
     user_Chose=e.target.id;
-    userDisplay.innerHTML=user_Chose;
+    userDisplay.innerHTML=user_Chose.toUpperCase();
 
     computer();
-    getResult()
+    getResult();
+    setTimeout(()=>{
+        console.log("ok");
+        if(result==='You Win!')
+        {
+            window.alert("Wooooooooow!! you win the game!!!!!")
+        }
+
+    },100)
+        
+    
+    
 
 }));
 
@@ -28,9 +39,9 @@ function  computer()
     {
         computer_Chose='paper';
     }
-    else computer_Chose='scissor';
+    else computer_Chose='scissors';
 
-    computerDisplay.innerHTML=computer_Chose;
+    computerDisplay.innerHTML=computer_Chose.toUpperCase();
    
 }
 
@@ -42,27 +53,28 @@ function getResult()
     }
     else if(computer_Chose==='rock'&&user_Chose==='paper')
     {
-        result="You Win!";
+        result='You Win!';
     }
-    else if(computer_Chose==='rock'&&user_Chose==='scissor')
+    else if(computer_Chose==='rock'&&user_Chose==='scissors')
     {
         result="You lost!";
     }
-    else if(computer_Chose==='paper'&&user_Chose==='scissor')
+    else if(computer_Chose==='paper'&&user_Chose==='scissors')
     {
-        result="You win!";
+        result='You Win!';
     }
     else if(computer_Chose==='paper'&&user_Chose==='rock')
     {
         result="You lost!";
     }
-    else if(computer_Chose==='scissor'&&user_Chose==='rock')
+    else if(computer_Chose==='scissors'&&user_Chose==='rock')
     {
-        result="You win!";
+        result='You Win!';
     }
-    else if(computer_Chose==='scissor'&&user_Chose==='paper')
+    else if(computer_Chose==='scissors'&&user_Chose==='paper')
     {
         result="You lost!";
     }
-    resultDisplay.innerHTML=result
+
+    resultDisplay.innerHTML=result.toUpperCase();
 }
