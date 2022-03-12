@@ -3,7 +3,7 @@ const reviews = [
     {
       id: 1,
       name: "susan smith",
-      job: "web developer",
+      job: "Mobile Developer",
       img:
         "https://images.unsplash.com/photo-1646541121625-e6675f5e88b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       text:
@@ -12,7 +12,7 @@ const reviews = [
     {
       id: 2,
       name: "anna johnson",
-      job: "web designer",
+      job: "Mobile Developer",
       img:
         "https://images.unsplash.com/photo-1646498263941-877307175fff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       text:
@@ -21,7 +21,7 @@ const reviews = [
     {
       id: 3,
       name: "peter jones",
-      job: "intern",
+      job: "Security",
       img:
         "https://images.unsplash.com/photo-1646321570817-c22def764421?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       text:
@@ -30,7 +30,7 @@ const reviews = [
     {
       id: 4,
       name: "bill anderson",
-      job: "the boss",
+      job: "Web",
       img:
         "https://images.unsplash.com/photo-1646321575749-4425a03acd87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       text:
@@ -45,7 +45,7 @@ const reviews = [
   
   const prevBtn = document.querySelector(".prev-btn");
   const nextBtn = document.querySelector(".next-btn");
-   const randomBtn = document.querySelector(".random-btn");
+  //  const randomBtn = document.querySelector(".random-btn");
   
 
 
@@ -86,10 +86,10 @@ const reviews = [
     showPerson(currentItem);
   });
   // show random person
-  randomBtn.addEventListener("click", function () {
-    console.log("hello");
+  // randomBtn.addEventListener("click", function () {
+  //   console.log("hello");
   
-    currentItem = Math.floor(Math.random() * reviews.length);
-    showPerson(currentItem);
-  });
+  //   currentItem = Math.floor(Math.random() * reviews.length);
+  //   showPerson(currentItem);
+  // });
   
