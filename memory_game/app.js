@@ -1,7 +1,7 @@
 const cardArray=[
     {
-        name:'argentina',
-        img:'images/flag-of-Argentina.png'
+        name: 'argentina',
+        img: 'images/flag-of-Argentina.png'
     },
     {
         name:'bangladesh',
@@ -131,7 +131,7 @@ function checkMatch()
     cardChosenIds=[];
     if(cardsWon.length==cardArray.length/2)
     {
-        winMsg.textContent="Congratulation!!! You found them all";
+        winMsg.textContent="Congratulation!!!";
     }
 
     totalDisplay.textContent=totalTry;
@@ -154,7 +154,6 @@ function flipCard(){
     }
 
 }
-
 reset.addEventListener('click',()=>{
     location.reload();
 })
