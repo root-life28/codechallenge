@@ -24,28 +24,29 @@ handler.handleReqRes = (req, res) => {
     };
 
     const decoder = new StringDecoder('utf-8');
-    let realData = '';
+    // eslint-disable-next-line no-unused-vars
     const chosenHandler = routes[trimmedPath] ? routes[trimmedPath] : notFoundHandler;
-
-    chosenHandler(requestProperties, (statusCode, payload) => {
-        // eslint-disable-next-line no-param-reassign
-        statusCode = typeof statusCode === 'number' ? statusCode : 500;
-        // eslint-disable-next-line no-param-reassign
-        payload = typeof payload === 'object' ? payload : {};
-
-        const payloadString = JSON.stringify(payload);
-        res.writeHead(statusCode);
-        res.end(payloadString);
-    });
+    // eslint-disable-next-line no-unused-vars
+    let realData = '';
     req.on('data', (buffer) => {
         realData += decoder.write(buffer);
     });
 
     req.on('end', () => {
         realData += decoder.end();
-        console.log(realData);
-        res.end('Hello Programmer');
+
+        chosenHandler(requestProperties, (statusCode, payload) => {
+            // eslint-disable-next-line no-param-reassign
+            statusCode = typeof statusCode === 'number' ? statusCode : 500;
+            // eslint-disable-next-line no-param-reassign
+            payload = typeof payload === 'object' ? payload : {};
+
+            const payloadString = JSON.stringify(payload);
+
+            // return the final response
+            res.writeHead(statusCode);
+            res.end(payloadString);
+        });
     });
 };
-
 module.exports = handler;

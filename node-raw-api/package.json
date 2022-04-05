@@ -4,7 +4,8 @@
   "description": "node js api project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index",
+    "start": "NODE_ENV=staging nodemon index",
+    "production": "NODE_ENV=production nodemon index",
     "test": "npm test"
   },
   "author": "bk",
