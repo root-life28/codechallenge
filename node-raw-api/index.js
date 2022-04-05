@@ -8,9 +8,28 @@
 const http = require('http');
 const { handleReqRes } = require('./helpers/handleReqRes');
 const environments = require('./helpers/environments');
-
+const data = require('./lib/data');
 // app object - module scaffolding
 
+// create data
+
+data.create('test', 'newFile', { name: 'Bangladesh', Language: 'Bangle' }, (err) => {
+    console.log(err);
+});
+
+// data.read('test', 'newFile', (err, fileData) => {
+//     console.log(err, fileData);
+// });
+
+// update file data
+// data.update('test', 'newFile', { name: 'Uk', Language: 'English' }, (err) => {
+//     console.log(err);
+// });
+
+// delete file
+// data.delete('test', 'newFile', (err) => {
+//     console.log(err);
+// });
 const app = {};
 
 // server
