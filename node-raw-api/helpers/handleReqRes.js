@@ -1,21 +1,25 @@
+// dependencies
 const url = require('url');
 const { StringDecoder } = require('string_decoder');
 const routes = require('../routes');
-
 const { notFoundHandler } = require('../handlers/routeHandler/notFoundHandler');
+const { parseJSON } = require('./utilities');
 
+// module scaffolding
 const handler = {};
 
 handler.handleReqRes = (req, res) => {
-    const parseUrl = url.parse(req.url, true);
-    const path = parseUrl.pathname;
+    // request handling
+    // get the url and parse it
+    const parsedUrl = url.parse(req.url, true);
+    const path = parsedUrl.pathname;
     const trimmedPath = path.replace(/^\/+|\/+$/g, '');
     const method = req.method.toLowerCase();
-    const queryStringObject = parseUrl.query;
+    const queryStringObject = parsedUrl.query;
     const headersObject = req.headers;
 
     const requestProperties = {
-        parseUrl,
+        parsedUrl,
         path,
         trimmedPath,
         method,
@@ -24,16 +28,18 @@ handler.handleReqRes = (req, res) => {
     };
 
     const decoder = new StringDecoder('utf-8');
-    // eslint-disable-next-line no-unused-vars
-    const chosenHandler = routes[trimmedPath] ? routes[trimmedPath] : notFoundHandler;
-    // eslint-disable-next-line no-unused-vars
     let realData = '';
+
+    const chosenHandler = routes[trimmedPath] ? routes[trimmedPath] : notFoundHandler;
+
     req.on('data', (buffer) => {
         realData += decoder.write(buffer);
     });
 
     req.on('end', () => {
         realData += decoder.end();
+
+        requestProperties.body = parseJSON(realData);
 
         chosenHandler(requestProperties, (statusCode, payload) => {
             // eslint-disable-next-line no-param-reassign
@@ -44,9 +50,11 @@ handler.handleReqRes = (req, res) => {
             const payloadString = JSON.stringify(payload);
 
             // return the final response
+            res.setHeader('Content-Type', 'application/json');
             res.writeHead(statusCode);
             res.end(payloadString);
         });
     });
 };
+
 module.exports = handler;

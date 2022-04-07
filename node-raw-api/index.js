@@ -8,12 +8,12 @@
 const http = require('http');
 const { handleReqRes } = require('./helpers/handleReqRes');
 const environments = require('./helpers/environments');
-const data = require('./lib/data');
+// const data = require('./lib/data');
 // app object - module scaffolding
 // create data
-data.create('test', 'newFile', { name: 'Bangladesh', Language: 'Bangle' }, (err) => {
-    console.log(err);
-});
+// data.create('test', 'newFile', { name: 'Bangladesh', Language: 'Bangle' }, (err) => {
+//     console.log(err);
+// });
 
 // update file data
 // data.update('test', 'newFile', { name: 'Uk', Language: 'English' }, (err) => {
