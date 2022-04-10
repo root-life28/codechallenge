@@ -1,5 +1,3 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-underscore-dangle */
 // dependencies
 const data = require('../../lib/data');
 const { hash } = require('../../helpers/utilities');
@@ -109,8 +107,14 @@ handler._token.put = (requestProperties, callback) => {
             if (tokenObject.expires > Date.now()) {
                 tokenObject.expires = Date.now() + 60 * 60 * 1000;
                 // store the updated token
-                data.update('tokens', id, tokenObject, () => {
-                    callback(200);
+                data.update('tokens', id, tokenObject, (err2) => {
+                    if (!err2) {
+                        callback(200);
+                    } else {
+                        callback(500, {
+                            error: 'There was a server side error!',
+                        });
+                    }
                 });
             } else {
                 callback(400, {
@@ -126,7 +130,6 @@ handler._token.put = (requestProperties, callback) => {
 };
 
 handler._token.delete = (requestProperties, callback) => {
-    console.log(requestProperties);
     // check the token if valid
     const id =
         typeof requestProperties.queryStringObject.id === 'string' &&
@@ -138,10 +141,16 @@ handler._token.delete = (requestProperties, callback) => {
         // lookup the user
         data.read('tokens', id, (err1, tokenData) => {
             if (!err1 && tokenData) {
-                data.delete('tokens', id, () => {
-                    callback(200, {
-                        message: 'Token was successfully deleted!',
-                    });
+                data.delete('tokens', id, (err2) => {
+                    if (!err2) {
+                        callback(200, {
+                            message: 'Token was successfully deleted!',
+                        });
+                    } else {
+                        callback(500, {
+                            error: 'There was a server side error!',
+                        });
+                    }
                 });
             } else {
                 callback(500, {

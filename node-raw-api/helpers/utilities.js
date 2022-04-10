@@ -1,4 +1,6 @@
 // dependencies
+
+// module scaffolding
 const crypto = require('crypto');
 
 const utilities = {};
@@ -27,24 +29,24 @@ utilities.hash = (str) => {
     return false;
 };
 
-utilities.createRandomString = (strlen) => {
-    let length = strlen;
-    length = typeof strlen === 'number' && strlen > 0 ? strlen : false;
+// create random string
+utilities.createRandomString = (strlength) => {
+    let length = strlength;
+    length = typeof strlength === 'number' && strlength > 0 ? strlength : false;
 
     if (length) {
-        const possibleCharacters = 'abcdefghijklmnopqrstuvwxyz1234567890';
+        const possiblecharacters = 'abcdefghijklmnopqrstuvwxyz1234567890';
         let output = '';
-        for (let i = 0; i < length; i += 1) {
-            const randomChar = possibleCharacters.charAt(
-                // eslint-disable-next-line comma-dangle
-                Math.floor(Math.random() * possibleCharacters.length)
+        for (let i = 1; i <= length; i += 1) {
+            const randomCharacter = possiblecharacters.charAt(
+                Math.floor(Math.random() * possiblecharacters.length)
             );
-            output += randomChar;
+            output += randomCharacter;
         }
-
         return output;
     }
     return false;
 };
+
 // export module
 module.exports = utilities;

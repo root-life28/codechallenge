@@ -2,10 +2,10 @@
 const url = require('url');
 const { StringDecoder } = require('string_decoder');
 const routes = require('../routes');
-const { notFoundHandler } = require('../handlers/routeHandler/notFoundHandler');
+const { notFoundHandler } = require('../handlers/routeHandlers/notFoundHandler');
 const { parseJSON } = require('./utilities');
 
-// module scaffolding
+// modue scaffolding
 const handler = {};
 
 handler.handleReqRes = (req, res) => {

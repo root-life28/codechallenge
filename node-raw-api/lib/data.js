@@ -1,81 +1,109 @@
+// dependencies
 const fs = require('fs');
 const path = require('path');
 
+// module scaffolding
 const lib = {};
 
-lib.basedir = path.join(__dirname, '../.data/');
+// base directory of the data folder
+lib.basedir = path.join(__dirname, '/../.data/');
 
-// write data
+// write data to file
 lib.create = (dir, file, data, callback) => {
-    // open file for write
-    fs.open(`${lib.basedir + dir}/${file}.json`, 'wx', (err, fileDes) => {
-        if (!err && fileDes) {
+    // open file for writing
+    fs.open(`${lib.basedir + dir}/${file}.json`, 'wx', (err, fileDescriptor) => {
+        if (!err && fileDescriptor) {
+            // convert data to stirng
             const stringData = JSON.stringify(data);
-            fs.writeFile(fileDes, stringData, (err2) => {
+
+            // write data to file and then close it
+            fs.writeFile(fileDescriptor, stringData, (err2) => {
                 if (!err2) {
-                    fs.close(fileDes, (err3) => {
+                    fs.close(fileDescriptor, (err3) => {
                         if (!err3) {
                             callback(false);
                         } else {
-                            callback('New File closing Error');
+                            callback('Error closing the new file!');
                         }
                     });
                 } else {
-                    callback('New File Writing Error');
+                    callback('Error writing to new file!');
                 }
             });
         } else {
-            callback('Error!!! File maybe already exists!');
+            callback('There was an error, file may already exists!');
         }
     });
 };
 
 // read data from file
 lib.read = (dir, file, callback) => {
-    fs.readFile(`${lib.basedir + dir}/${file}.json`, 'utf-8', (err, data) => {
+    fs.readFile(`${lib.basedir + dir}/${file}.json`, 'utf8', (err, data) => {
         callback(err, data);
     });
 };
 
 // update existing file
 lib.update = (dir, file, data, callback) => {
-    fs.open(`${lib.basedir + dir}/${file}.json`, 'r+', (err, fileDes) => {
-        if (!err && fileDes) {
-            const stingData = JSON.stringify(data);
-            fs.ftruncate(fileDes, (err1) => {
+    // file open for writing
+    fs.open(`${lib.basedir + dir}/${file}.json`, 'r+', (err, fileDescriptor) => {
+        if (!err && fileDescriptor) {
+            // convert the data to string
+            const stringData = JSON.stringify(data);
+
+            // truncate the file
+            fs.ftruncate(fileDescriptor, (err1) => {
                 if (!err1) {
-                    fs.writeFile(fileDes, stingData, (err3) => {
-                        if (!err3) {
-                            fs.close(fileDes, (err4) => {
-                                if (err4) {
-                                    callback('Error!!! Update file closing error');
+                    // write to the file and close it
+                    fs.writeFile(fileDescriptor, stringData, (err2) => {
+                        if (!err2) {
+                            // close the file
+                            fs.close(fileDescriptor, (err3) => {
+                                if (!err3) {
+                                    callback(false);
                                 } else {
-                                    callback('file update success');
+                                    callback('Error closing file!');
                                 }
                             });
                         } else {
-                            console.log('file writing error');
+                            callback('Error writing to file!');
                         }
                     });
                 } else {
-                    console.log('Error!! file truncating');
+                    callback('Error truncating file!');
                 }
             });
         } else {
-            console.log('Error!! Updating file maybe not exist');
+            console.log(`Error updating. File may not exist`);
         }
     });
 };
-// delete file
 
+// delete existing file
 lib.delete = (dir, file, callback) => {
-    // unlink
+    // unlink file
     fs.unlink(`${lib.basedir + dir}/${file}.json`, (err) => {
         if (!err) {
-            callback('File Delete Successful');
+            callback(false);
         } else {
-            callback('File Delete  unsuccessful');
+            callback(`Error deleting file`);
         }
     });
 };
+
+// list all the items in a directory
+lib.list = (dir, callback) => {
+    fs.readdir(`${lib.basedir + dir}/`, (err, fileNames) => {
+        if (!err && fileNames && fileNames.length > 0) {
+            const trimmedFileNames = [];
+            fileNames.forEach((fileName) => {
+                trimmedFileNames.push(fileName.replace('.json', ''));
+            });
+            callback(false, trimmedFileNames);
+        } else {
+            callback('Error reading directory!');
+        }
+    });
+};
+
 module.exports = lib;
